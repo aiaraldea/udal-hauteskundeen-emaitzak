@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.uh2015 {
+    font-family: sans-serif;
+}
+.zinegotziak-d3pie-inner {
+    position: relative;
+}                                                          
+.zinegotziak-d3pie {                                                          
+    height: 250px;                                                  
+    width: 50%;            
+    float: right;                                       
+}
+.zinegotziak-d3pie .tooltip {                                                        
+    background: #eee;                                               
+    box-shadow: 0 0 5px #999999;                                    
+    color: #333;                                                    
+    display: none;                                                  
+    font-size: 12px;                                                
+    /*left: 130px;*/                                                    
+    padding: 10px;                                                  
+    /*position: absolute;*/                                             
+    text-align: center;                                             
+    /*top: 95px;*/                                                      
+    /*width: 80px;*/                                                    
+    z-index: 10;                                                    
+}
+.uh2015ud ul,
+.uh2015u ul 
+{
+    margin: 0px;
+    padding: 0px;
+}
+.uh2015ud ul li.hautatua,
+.uh2015u ul li.hautatua {
+    font-weight: bold;
+    color: white;
+    background-color: #2d3c01;
+}
+.piechart .chart {
+    min-height: 250px;
+}
+.piechart {
+    width:50%;
+    float:left;
+}
+.piechart .label {
+    text-align: center;
+    font-weight: bold;
+    color: #aaa;
+}
+#piechartZinegotziak {
+    width:50%;
+    padding-left: 50%;
+}
+#bilakaera .chart {
+    min-height: 450px;
+}
+#bilakaera .selector {
+    text-align: center;
+}
+#bilakaera .selector div {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+}
+#bilakaera .selector div.option {
+    cursor: pointer;
+}
+#bilakaera .selector div.hautatua {
+    font-weight: bold;
+}
+#bilakaera .selector div.label {
+    color: #2d3c01;
+}
+
+
+.uh2015ud ul li,
+.uh2015u ul li
+{
+    list-style: none;
+    display: inline-block;
+    margin: .15em;
+    padding: .35em;
+    background-color: #969e80;
+    cursor: pointer;
+}
+.uh2015tc  {
+    margin-top: 10px;
+    clear: both;
+}
+.uh2015tc .cf  {
+    margin-bottom: 10px;
+}
+.uh2015tc .cf > div .label {
+    color: #2d3c01;
+}
+.uh2015tc .cf > div {
+    display: inline-block;
+    min-width: 31%;
+    padding: 5px;
+}
+.uh2015tc .label:after {content: ": ";}
+.uh2015tc table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.uh2015tc table td {
+    padding: 5px;
+    background-color: #969e80;
+    border: 1px solid white;
+}
+.uh2015tc table td.data{
+    text-align: right;
+}
+.uh2015tc th {
+    padding: 8px;
+    color: white;
+    background-color: #2d3c01;
+    border: 1px solid white;
+}
+.atalaseAzpian {
+    color: #444;
+}

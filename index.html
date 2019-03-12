@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="css/zerrendak.css?q=3" rel="stylesheet" type="text/css"/>
+        <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
+        <script src="js/app/d3Piechart.js"></script>
+        <script src="js/app/model.js?q=3" type="text/javascript"></script>
+        <script src="js/app/view.js?q=3" type="text/javascript"></script>
+        <script src="js/app/d3Piechart.js" type="text/javascript"></script>
+        <script src="js/app/controller.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak1979.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak1983.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak1987.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak1991.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak1995.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak1999.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak2003.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak2007.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak2011.js?q=3" type="text/javascript"></script>
+        <script src="js/app/botoak2015.js?q=3" type="text/javascript"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            // Load the Visualization API and the piechart package.
+            google.load('visualization', '1.0', {'packages': ['corechart']});
+
+            $(document).ready(function () {
+              var model = aiaraldea.hauteskundeak2015.model();
+              var controller = aiaraldea.hauteskundeak2015.controller(model);
+              controller.loadPreviousData();
+              controller.init(".uh2015");
+            });
+        </script>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="uh2015">Kargatzen...</div>
+    </body>
+</html>

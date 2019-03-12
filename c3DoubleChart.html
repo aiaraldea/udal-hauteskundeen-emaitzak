@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Step 5 - Adding Tooltips</title>
+        <link rel="stylesheet" href="normalize.css">
+        <link href="css/zerrendak.css?q=3" rel="stylesheet" type="text/css"/>
+        <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
+        <script src="js/app/model.js?q=5" type="text/javascript"></script>
+        <script src="js/app/view.js?q=5" type="text/javascript"></script>
+        <script src="js/app/controller.js?q=5" type="text/javascript"></script>
+        <!--<script src="js/app/botoak2007.js?q=2" type="text/javascript"></script>-->
+        <script src="js/app/botoak2011.js?q=2" type="text/javascript"></script>
+        <script src="js/app/botoak2015.js?q=2" type="text/javascript"></script>
+        <style>
+            .zinegotziak-d3dpie {                                                          
+                height: 320px;                                                  
+                position: relative;                                             
+                width: 620px;                                                   
+            }                                                                 
+            .tooltip {                                                        
+                background: #eee;                                               
+                box-shadow: 0 0 5px #999999;                                    
+                color: #333;                                                    
+                display: none;                                                  
+                font-size: 12px;                                                
+                /*left: 130px;*/                                                    
+                padding: 10px;                                                  
+                /*position: absolute;*/                                             
+                text-align: center;                                             
+                /*top: 95px;*/                                                      
+                /*width: 80px;*/                                                    
+                z-index: 10;                                                    
+            }
+            rect {
+                stroke-width: 2;
+            }
+            #chart {
+                width: 620px;
+                float: left;
+            }
+            #udalerriak {
+                padding: 0 20px;
+                width: 240px;
+                float: left;
+            }
+            #udalerriak li {
+                color: #fff;
+                display: block;
+                margin: 3px;
+            }
+            .selector div {
+                display: inline-block;
+                padding: 4px;
+                margin: 6px;
+            }
+            .selector div.option {
+                cursor: pointer;
+                border: 1px solid;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
+        <div id="chart"></div>
+        <div id="udalerriak"></div>
+        <div id="grafikaMota"></div>
+        <div style="clear:both;"></div>
+        <!--<div>-->
+            <!--<a id="download">Gorde honela</a></div>-->
+        <script src="js/app/d3DoublePiechart.js"></script>
+        <script>
+
+            var drawContainer = function (parent, clickCallback) {
+              var container = $('<div class="selector" style="clear: both;"><div class="label">Ikuspegia:</div><div class="option">Botoak alderdiei</div><div class="option">Botoak</div><div class="option">Zinegotziak</div></div>').appendTo(parent);
+              container.find('.option').click(clickCallback);
+              return container;
+            };
+
+            $(document).ready(function () {
+              var chartType;
+              var model = aiaraldea.hauteskundeak2015.model();
+              var controller = aiaraldea.hauteskundeak2015.controller(model);
+
+              var clickCallback = function () {
+//                alert($(this).text());
+                chartType = $(this).text();
+                draw();
+//                init(model.hautatuak.udala);
+              };
+              drawContainer('#grafikaMota', clickCallback);
+              controller.loadPreviousData();
+
+//              var udalZerrenda = aiaraldea.hauteskundeak2015.udalak("#udalerriak", model, loadHerriaZinegotziak);
+              var udalZerrenda = aiaraldea.hauteskundeak2015.udalak("#udalerriak", model, drawHerria);
+              udalZerrenda.init();
+
+//              model.hautatuak.udala = 'Aiaraldea';
+              model.hautatuak.urtea = 2015;
+
+              var d3DoublePie = aiaraldea.hauteskundeak2015.d3DoublePie.create('#chart');
+              function loadHerriaBotoak() {
+                if ($(this).text() != '') {
+                  model.hautatuak.udala = $(this).text();
+                }
+                var votesA = model.getD3PiechartVotesByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea);
+                var votesB = model.getD3PiechartVotesByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea - 4);
+                d3DoublePie.draw(model.hautatuak.udala, votesA.zinegotziak, votesA.koloreak, votesB.zinegotziak, votesB.koloreak, votesA.zenbatua);
+              }
+              function loadHerriaBotoakAlderdiei() {
+                if ($(this).text() != '') {
+                  model.hautatuak.udala = $(this).text();
+                }
+                var votesA = model.getD3PiechartVotesToPartiesByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea);
+                var votesB = model.getD3PiechartVotesToPartiesByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea - 4);
+
+                d3DoublePie.draw(model.hautatuak.udala, votesA.zinegotziak, votesA.koloreak, votesB.zinegotziak, votesB.koloreak, votesA.zenbatua);
+              }
+              function loadHerriaZinegotziak() {
+                if ($(this).text() != '') {
+                  model.hautatuak.udala = $(this).text();
+                }
+                var councilersA = model.getD3PiechartCouncilersByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea);
+                var councilersB = model.getD3PiechartCouncilersByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea - 4);
+
+                d3DoublePie.draw(model.hautatuak.udala, councilersA.zinegotziak, councilersA.koloreak, councilersB.zinegotziak, councilersB.koloreak);
+              }
+              function loadHerriaZinegotziak() {
+                if ($(this).text() != '') {
+                  model.hautatuak.udala = $(this).text();
+                }
+                var councilersA = model.getD3PiechartCouncilersByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea);
+                var councilersB = model.getD3PiechartCouncilersByCouncilAndYear(model.hautatuak.udala, model.hautatuak.urtea - 4);
+
+                d3DoublePie.draw(model.hautatuak.udala, councilersA.zinegotziak, councilersA.koloreak, councilersB.zinegotziak, councilersB.koloreak);
+              }
+              function drawHerria() {
+                  
+                if ($(this).text() != '') {
+                  model.hautatuak.udala = $(this).text();
+                }
+                draw();
+              }
+              var draw = function () {
+                if (chartType === 'Zinegotziak') {
+                  loadHerriaZinegotziak();
+                } else if (chartType === 'Botoak') {
+                  loadHerriaBotoak();
+                } else {
+                  loadHerriaBotoakAlderdiei();
+                }
+              };
+              draw();
+            });
+
+        </script>
+    </body>
+</html>
