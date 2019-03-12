@@ -5,7 +5,7 @@ aiaraldea.hauteskundeak2015.model.botoak2015 = [
     "zinegotziak": 17,
     "errolda": 8199,
     "zenbatua": 0,
-    "botoak": 0,
+    "botoak": 5520,
     "baliogabeak": 137,
     "baliodunak": 0,
     "zuriak": 88,
