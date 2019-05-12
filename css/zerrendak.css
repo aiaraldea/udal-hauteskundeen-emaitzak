@@ -2,17 +2,45 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    font-size: 1.7vw;
 }
+
+
 .uh2015 {
     font-family: sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 40vw auto;
+    grid-template-areas: 
+        "udalak udalak" 
+        "urteak urteak" 
+        "grafikoak grafikoak"
+        "taula taula";
+}
+.uh2015ud {
+    grid-area: udalak; 
+}
+.uh2015u {
+    grid-area: urteak; 
+}
+#grafikoak {
+    grid-area: grafikoak;
+}
+.piechart {
+    width: 50%;
+    height: 40vw;
+    float:left;
+}
+.zinegotziak-d3pie {
+    width: 50%;
+    height: 30vw;
+    float:right;
+}
+.uh2015tc {
+    grid-area: taula;
 }
 .zinegotziak-d3pie-inner {
     position: relative;
-}                                                          
-.zinegotziak-d3pie {                                                          
-    height: 250px;                                                  
-    width: 50%;            
-    float: right;                                       
 }
 .zinegotziak-d3pie .tooltip {                                                        
     background: #eee;                                               
@@ -41,11 +69,7 @@ body {
     background-color: #2d3c01;
 }
 .piechart .chart {
-    min-height: 250px;
-}
-.piechart {
-    width:50%;
-    float:left;
+    min-height: 38vw;
 }
 .piechart .label {
     text-align: center;
@@ -124,4 +148,66 @@ body {
 }
 .atalaseAzpian {
     color: #444;
+}
+
+
+
+@media (max-width: 767px) {
+    body {
+        font-size: 3.7vw;
+    }
+
+.uh2015 {
+    font-family: sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "udalak urteak" 
+    "grafikoak grafikoak"
+    "taula taula";
+}
+
+.uh2015ud {
+    grid-area: udalak; 
+}
+.uh2015u {
+    grid-area: urteak; 
+}
+#grafikoak {
+    grid-area: grafikoak;
+}
+.piechart {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.piechart .chart {
+
+    min-height: 58vw;
+
+}
+.zinegotziak-d3pie {
+    display: block;
+    width: 100%;
+}
+.uh2015tc {
+    grid-area: taula;
+}
+
+.uh2015ud ul li
+{
+    width:90%;
+}
+.uh2015u ul li
+{
+    width:90%;
+}
+
+.uh2015tc .cf > div  {
+    width:100%;
+}
+.uh2015tc .cf .data  {
+    font-weight:bold;
+}
 }
